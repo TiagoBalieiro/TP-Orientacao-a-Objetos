@@ -1,27 +1,25 @@
+// app/Turma.java
 package app;
 
 public class Turma extends Disciplina {
-    private String alunos;
-    private int numero;
+    private String alunos, numero;
 
 
-    public Turma(String nome, String codigo, String alunos, int numero,int id) {
-        super(nome, codigo, null, 0, id);
+    public Turma(String nome, String codigo, String horario, String qtdVagas, String alunos, String numero) {
+        super(nome, codigo, horario, Integer.parseInt(qtdVagas));
         this.alunos = alunos;
         this.numero = numero;
     }
-    public String getAlunos() {
-        return alunos;
-    }
 
-    public String getNumero() {
-        return getNumero();
-    }
-
+    @Override
     public String toString() {
-        String resposta = super.toString() + '\n';
-        resposta += "Alunos: " + alunos + '\n';
-        resposta += "Numero: " + numero + '\n';
-        return resposta;
+        return "Turma{" +
+                "nome='" + getNome() + '\'' + '\n' +
+                ", codigo='" + getCodigo() + '\'' + '\n' +
+                ", horario='" + getHorario() + '\'' + '\n' +
+                ", Quantidade de Vagas=" + getQtdVagas() + '\n' +
+                ", alunos='" + alunos + '\'' + '\n' +
+                ", numero='" + numero + '\'' + '\n' +
+                '}';
     }
 }

@@ -1,9 +1,7 @@
 // view/Menu.java
 package view;
 
-
 import javax.swing.JOptionPane;
-
 import app.*;
 import cadastros.Cadastro;
 
@@ -35,8 +33,8 @@ public class Menu<T extends ItensCadastrados> {
                     break;
 
                 case 2:
-                    int id = lerId();
-                    T objeto = cadastro.pesquisar(id);
+                    String chave = lerChave();
+                    T objeto = cadastro.pesquisar(chave);
                     if (objeto != null) {
                         JOptionPane.showMessageDialog(null, objeto);
                     } else {
@@ -45,19 +43,19 @@ public class Menu<T extends ItensCadastrados> {
                     break;
 
                 case 3:
-                    int idAtualizar = lerId();
-                    T objetoAtualizar = cadastro.pesquisar(idAtualizar);
+                    String chaveAtualizar = lerChave();
+                    T objetoAtualizar = cadastro.pesquisar(chaveAtualizar);
                     if (objetoAtualizar != null) {
                         T novoObjetoAtualizar = dadosNovoObjeto();
-                        cadastro.atualizar(idAtualizar, novoObjetoAtualizar);
+                        cadastro.atualizar(chaveAtualizar, novoObjetoAtualizar);
                     } else {
                         JOptionPane.showMessageDialog(null, "Objeto não encontrado");
                     }
                     break;
 
                 case 4:
-                    int idRemover = lerId();
-                    boolean removido = cadastro.remover(idRemover);
+                    String chaveRemover = lerChave();
+                    boolean removido = cadastro.remover(chaveRemover);
                     if (removido) {
                         JOptionPane.showMessageDialog(null, "Objeto removido.");
                     } else {
@@ -71,9 +69,14 @@ public class Menu<T extends ItensCadastrados> {
         } while (opcao != 0);
     }
 
-    private int lerId() {
-        String strId = JOptionPane.showInputDialog("Informe o id: ");
-        return Integer.parseInt(strId);
+    private String lerChave() {
+        if (cadastro.getTipo().equals(Aluno.class)) {
+            return JOptionPane.showInputDialog("Informe a matricula: ");
+        } else if (cadastro.getTipo().equals(Professor.class)) {
+            return JOptionPane.showInputDialog("Informe a matricula FUB: ");
+        } else {
+            return JOptionPane.showInputDialog("Informe o codigo: ");
+        }
     }
 
     private T dadosNovoObjeto() {
@@ -84,8 +87,7 @@ public class Menu<T extends ItensCadastrados> {
                 String email = JOptionPane.showInputDialog("Informe o email: ");
                 String matricula = JOptionPane.showInputDialog("Informe a matricula: ");
                 String curso = JOptionPane.showInputDialog("Informe o curso: ");
-                int id = lerId();
-                return (T) new Aluno(nome, cpf, email, matricula, curso, id);
+                return (T) new Aluno(nome, cpf, email, matricula, curso);
             } else if (cadastro.getTipo().equals(Professor.class)) {
                 String nome = JOptionPane.showInputDialog("Informe o nome: ");
                 String cpf = JOptionPane.showInputDialog("Informe o CPF: ");
@@ -93,22 +95,21 @@ public class Menu<T extends ItensCadastrados> {
                 String areaFormacao = JOptionPane.showInputDialog("Informe a area de formacao: ");
                 String matriculaFUB = JOptionPane.showInputDialog("Informe a matricula FUB: ");
                 String departamento = JOptionPane.showInputDialog("Informe o departamento: ");
-                int id = lerId();
-                return (T) new Professor(nome, cpf, email, areaFormacao, matriculaFUB, id);
+                return (T) new Professor(nome, cpf, email, areaFormacao, matriculaFUB, departamento);
             } else if (cadastro.getTipo().equals(Disciplina.class)) {
                 String nome = JOptionPane.showInputDialog("Informe o nome: ");
                 String codigo = JOptionPane.showInputDialog("Informe o codigo: ");
                 String horario = JOptionPane.showInputDialog("Informe o horario: ");
                 int qtdVagas = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de vagas: "));
-                int id = lerId();
-                return (T) new Disciplina(nome, codigo, horario, qtdVagas, id);
+                return (T) new Disciplina(nome, codigo, horario, qtdVagas);
             } else if (cadastro.getTipo().equals(Turma.class)) {
                 String nome = JOptionPane.showInputDialog("Informe o nome: ");
                 String codigo = JOptionPane.showInputDialog("Informe o codigo: ");
                 String alunos = JOptionPane.showInputDialog("Informe os alunos: ");
-                int numero = Integer.parseInt(JOptionPane.showInputDialog("Informe o numero: "));
-                int id = lerId();
-                return (T) new Turma(nome, codigo, alunos, numero, id);
+                String numero = JOptionPane.showInputDialog("Informe o numero: ");
+                String horario = JOptionPane.showInputDialog("Informe o horario: ");
+                String qtdVagas = JOptionPane.showInputDialog("Informe a quantidade de vagas: ");
+                return (T) new Turma(nome, codigo, alunos, numero, horario, qtdVagas);
             }
         }
         return null;

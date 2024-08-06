@@ -3,12 +3,13 @@ package app;
 public class PessoaFisica extends ItensCadastrados {
 	
 	private String cpf,
-	               email;
+			nome,
+			email;
 	
-	public PessoaFisica(String nome, String cpf, String email,int id) {
-		super(id,nome);
+	public PessoaFisica(String nome, String cpf, String email) {
 		this.cpf = cpf;
 		this.email = email;
+		this.nome = nome;
 	}
 
 
