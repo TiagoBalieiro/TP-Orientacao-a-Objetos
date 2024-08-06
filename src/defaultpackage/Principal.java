@@ -1,5 +1,4 @@
-package Principal;
-
+package defaultpackage;
 import javax.swing.JOptionPane;
 
 import app.Disciplina;

@@ -1,14 +1,12 @@
-// app/Disciplina.java
 package app;
 
 public class Disciplina extends ItensCadastrados {
-    private String nome;
     private String codigo;
     private String horario;
     private int qtdVagas;
 
     public Disciplina(String nome, String codigo, String horario, int qtdVagas) {
-        this.nome = nome;
+        super(nome);
         this.codigo = codigo;
         this.horario = horario;
         this.qtdVagas = qtdVagas;

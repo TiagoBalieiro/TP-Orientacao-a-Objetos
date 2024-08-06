@@ -1,15 +1,13 @@
-// app/Aluno.java
 package app;
 
 public class Aluno extends ItensCadastrados {
-    private String nome;
     private String cpf;
     private String email;
     private String matricula;
     private String curso;
 
     public Aluno(String nome, String cpf, String email, String matricula, String curso) {
-        this.nome = nome;
+        super(nome);
         this.cpf = cpf;
         this.email = email;
         this.matricula = matricula;

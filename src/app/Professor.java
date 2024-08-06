@@ -10,7 +10,7 @@ public class Professor extends ItensCadastrados {
 	private String departamento;
 
 	public Professor(String nome, String cpf, String email, String areaFormacao, String matriculaFUB, String departamento) {
-		this.nome = nome;
+		super(nome);
 		this.cpf = cpf;
 		this.email = email;
 		this.areaFormacao = areaFormacao;

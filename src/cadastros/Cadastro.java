@@ -1,4 +1,4 @@
-// cadastros/Cadastro.java
+
 package cadastros;
 
 import java.util.HashMap;
