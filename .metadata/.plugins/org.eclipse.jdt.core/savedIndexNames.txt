@@ -1,0 +1,2 @@
+INDEX VERSION 1.134+C:\Users\wisla\eclipse-workspace\OOTrabalho\.metadata\.plugins\org.eclipse.jdt.core
+1067094681.index
