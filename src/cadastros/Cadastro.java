@@ -1,4 +1,4 @@
-
+// src/cadastros/Cadastro.java
 package cadastros;
 
 import java.util.HashMap;
@@ -7,6 +7,10 @@ import app.ItensCadastrados;
 import app.Aluno;
 import app.Professor;
 import app.Disciplina;
+import app.Turma;
+import exceptions.CampoEmBrancoException;
+import exceptions.DisciplinaNaoAtribuidaException;
+import exceptions.ProfessorNaoAtribuidoException;
 
 public class Cadastro<T extends ItensCadastrados> {
     private Map<String, T> itens;
@@ -21,7 +25,35 @@ public class Cadastro<T extends ItensCadastrados> {
         return tipo;
     }
 
-    public void cadastrar(T item) {
+    public void cadastrar(T item) throws CampoEmBrancoException, DisciplinaNaoAtribuidaException, ProfessorNaoAtribuidoException {
+        if (item instanceof Aluno) {
+            Aluno aluno = (Aluno) item;
+            if (aluno.getMatricula().isEmpty() || aluno.getNome().isEmpty() || aluno.getEmail().isEmpty() || aluno.getCurso().isEmpty()) {
+                throw new CampoEmBrancoException("Preencha todos os campos");
+            }
+        } else if (item instanceof Professor) {
+            Professor professor = (Professor) item;
+            if (professor.getMatriculaFUB().isEmpty() || professor.getNome().isEmpty() || professor.getCpf().isEmpty() || professor.getEmail().isEmpty() || professor.getAreaFormacao().isEmpty() || professor.getDepartamento().isEmpty()) {
+                throw new CampoEmBrancoException("Preencha todos os campos");
+            }
+        } else if (item instanceof Disciplina) {
+            Disciplina disciplina = (Disciplina) item;
+            if (disciplina.getCodigo().isEmpty() || disciplina.getNome().isEmpty() || disciplina.getHorario().isEmpty() || disciplina.getQtdVagas() == 0) {
+                throw new CampoEmBrancoException("Preencha todos os campos");
+            }
+        } else if (item instanceof Turma) {
+            Turma turma = (Turma) item;
+            if (turma.getCodigo().isEmpty() || turma.getNome().isEmpty() || turma.getHorario().isEmpty() || turma.getQtdVagas() == 0 || turma.getAlunos().isEmpty() || turma.getNumero().isEmpty()) {
+                throw new CampoEmBrancoException("Preencha todos os campos");
+            }
+            if (turma.getDisciplina() == null) {
+                throw new DisciplinaNaoAtribuidaException("Disciplina não atribuída");
+            }
+            if (turma.getProfessor() == null) {
+                throw new ProfessorNaoAtribuidoException("Professor não atribuído");
+            }
+        }
+
         String chave = getChave(item);
         itens.put(chave, item);
     }
@@ -39,12 +71,15 @@ public class Cadastro<T extends ItensCadastrados> {
     }
 
     private String getChave(T item) {
-        if (tipo.equals(Aluno.class)) {
+        if (item instanceof Aluno) {
             return ((Aluno) item).getMatricula();
-        } else if (tipo.equals(Professor.class)) {
+        } else if (item instanceof Professor) {
             return ((Professor) item).getMatriculaFUB();
-        } else {
+        } else if (item instanceof Disciplina) {
             return ((Disciplina) item).getCodigo();
+        } else if (item instanceof Turma) {
+            return ((Turma) item).getCodigo();
         }
+        return null;
     }
 }

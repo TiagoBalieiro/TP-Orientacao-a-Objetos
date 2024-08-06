@@ -29,7 +29,11 @@ public class Menu<T extends ItensCadastrados> {
             switch (opcao) {
                 case 1:
                     T novoObjeto = dadosNovoObjeto();
-                    cadastro.cadastrar(novoObjeto);
+                    try {
+                        cadastro.cadastrar(novoObjeto);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
                     break;
 
                 case 2:
@@ -109,7 +113,9 @@ public class Menu<T extends ItensCadastrados> {
                 String numero = JOptionPane.showInputDialog("Informe o numero: ");
                 String horario = JOptionPane.showInputDialog("Informe o horario: ");
                 String qtdVagas = JOptionPane.showInputDialog("Informe a quantidade de vagas: ");
-                return (T) new Turma(nome, codigo, alunos, numero, horario, qtdVagas);
+                Disciplina disciplina = (Disciplina) cadastro.pesquisar(JOptionPane.showInputDialog("Informe o codigo da disciplina: "));
+                Professor professor = (Professor) cadastro.pesquisar(JOptionPane.showInputDialog("Informe a matricula FUB do professor: "));
+                return (T) new Turma(nome, codigo, horario, qtdVagas, alunos, numero, disciplina, professor);
             }
         }
         return null;

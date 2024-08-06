@@ -2,7 +2,6 @@
 package app;
 
 public class Professor extends ItensCadastrados {
-	private String nome;
 	private String cpf;
 	private String email;
 	private String areaFormacao;
@@ -20,6 +19,46 @@ public class Professor extends ItensCadastrados {
 
 	public String getMatriculaFUB() {
 		return matriculaFUB;
+	}
+
+	public void setMatriculaFUB(String matriculaFUB) {
+		this.matriculaFUB = matriculaFUB;
+	}
+
+	public String getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAreaFormacao() {
+		return areaFormacao;
+	}
+
+	public void setAreaFormacao(String areaFormacao) {
+		this.areaFormacao = areaFormacao;
+	}
+
+	public String getNome() {
+		return nome;
 	}
 
 	@Override
