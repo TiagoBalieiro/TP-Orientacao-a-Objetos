@@ -1,25 +1,36 @@
 // src/app/Turma.java
 package app;
 
-public class Turma extends Disciplina {
-    private String alunos, numero;
-    private Disciplina disciplina;
-    private Professor professor;
+import java.util.List;
+import java.util.ArrayList;
 
-    public Turma(String nome, String codigo, String horario, String qtdVagas, String alunos, String numero, Disciplina disciplina, Professor professor) {
+public class Turma extends Disciplina {
+    private String numero;
+    private Disciplina disciplinaAssociada;
+    private Professor professor;
+    private Aluno[] alunos;  // Array de alunos associados à turma
+    private int contadorAlunos;  // Mantém o controle de quantos alunos foram adicionados
+
+    public Turma(String nome, String codigo, String horario, String qtdVagas, String numero, Disciplina disciplinaAssociada, Professor professor) {
         super(nome, codigo, horario, Integer.parseInt(qtdVagas));
-        this.alunos = alunos;
-        this.numero = numero;
-        this.disciplina = disciplina;
+        this.alunos = new Aluno[ Integer.parseInt(qtdVagas)];  // Inicializa o array de alunos com a quantidade de vagas disponíveis        this.numero = numero;
+        this.contadorAlunos = 0;
+        this.disciplinaAssociada = disciplinaAssociada;
         this.professor = professor;
+
     }
 
-    public String getAlunos() {
+    public Aluno[] getAlunos() {
         return alunos;
     }
 
-    public void setAlunos(String alunos) {
-        this.alunos = alunos;
+    public void adicionarAluno(Aluno aluno) {
+        if (contadorAlunos < alunos.length) {
+            alunos[contadorAlunos] = aluno;  // Adiciona o aluno ao próximo espaço disponível no array
+            contadorAlunos++;
+        } else {
+            System.out.println("Não é possível adicionar mais alunos. A turma está cheia.");
+        }
     }
 
     public String getNumero() {
@@ -30,12 +41,12 @@ public class Turma extends Disciplina {
         this.numero = numero;
     }
 
-    public Disciplina getDisciplina() {
-        return disciplina;
+    public Disciplina getDisciplinaAssociada() {
+        return disciplinaAssociada;
     }
 
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
+    public void setDisciplinaAssociada(Disciplina disciplinaAssociada) {
+        this.disciplinaAssociada = disciplinaAssociada;
     }
 
     public Professor getProfessor() {
@@ -48,15 +59,27 @@ public class Turma extends Disciplina {
 
     @Override
     public String toString() {
-        return "Turma{" +
-                "nome='" + getNome() + '\'' + '\n' +
-                ", codigo='" + getCodigo() + '\'' + '\n' +
-                ", horario='" + getHorario() + '\'' + '\n' +
-                ", Quantidade de Vagas=" + getQtdVagas() + '\n' +
-                ", alunos='" + alunos + '\'' + '\n' +
-                ", numero='" + numero + '\'' + '\n' +
-                ", disciplina='" + (disciplina != null ? disciplina.getNome() : "null") + '\'' + '\n' +
-                ", professor='" + (professor != null ? professor.getNome() : "null") + '\'' + '\n' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Turma{\n");
+        sb.append("nome='").append(getNome()).append("',\n");
+        sb.append("codigo='").append(getCodigo()).append("',\n");
+        sb.append("horario='").append(getHorario()).append("',\n");
+        sb.append("Quantidade de Vagas=").append(getQtdVagas()).append(",\n");
+        sb.append("numero da Turma='").append(numero).append("',\n");
+        sb.append("disciplinaAssociada='").append(disciplinaAssociada != null ? disciplinaAssociada.getNome() : "null").append("',\n");
+        sb.append("professor='").append(professor != null ? professor.getNome() : "null").append("',\n");
+        sb.append("alunos=[\n");
+
+        for (int i = 0; i < contadorAlunos; i++) {
+            sb.append(alunos[i].getNome()).append(", ");
+        }
+
+        if (contadorAlunos > 0) {
+            sb.setLength(sb.length() - 2); // Remove a última vírgula e espaço
+        }
+
+        sb.append("]\n}");
+        return sb.toString();
     }
+
 }

@@ -41,18 +41,18 @@ public class Cadastro<T extends ItensCadastrados> {
             if (disciplina.getCodigo().isEmpty() || disciplina.getNome().isEmpty() || disciplina.getHorario().isEmpty() || disciplina.getQtdVagas() == 0) {
                 throw new CampoEmBrancoException("Preencha todos os campos");
             }
-        } else if (item instanceof Turma) {
+        } /*else if (item instanceof Turma) {
             Turma turma = (Turma) item;
             if (turma.getCodigo().isEmpty() || turma.getNome().isEmpty() || turma.getHorario().isEmpty() || turma.getQtdVagas() == 0 || turma.getAlunos().isEmpty() || turma.getNumero().isEmpty()) {
                 throw new CampoEmBrancoException("Preencha todos os campos");
             }
-            if (turma.getDisciplina() == null) {
+            if (turma.getDisciplinaAssociada() == null) {
                 throw new DisciplinaNaoAtribuidaException("Disciplina não atribuída");
             }
             if (turma.getProfessor() == null) {
                 throw new ProfessorNaoAtribuidoException("Professor não atribuído");
             }
-        }
+        }*/
 
         String chave = getChave(item);
         itens.put(chave, item);
