@@ -1,4 +1,3 @@
-// src/cadastros/Cadastro.java
 package cadastros;
 
 import java.util.HashMap;
@@ -43,14 +42,14 @@ public class Cadastro<T extends ItensCadastrados> {
             }
         } else if (item instanceof Turma) {
             Turma turma = (Turma) item;
-            if (turma.getCodigo().isEmpty() || turma.getNome().isEmpty() || turma.getHorario().isEmpty() || turma.getQtdVagas() == 0 || turma.getAlunos().isEmpty() || turma.getNumero().isEmpty()) {
+            if (turma.getCodigo().isEmpty() || turma.getNome().isEmpty() || turma.getHorario().isEmpty() || turma.getQtdVagas() == 0 || turma.getNumero().isEmpty()) {
                 throw new CampoEmBrancoException("Preencha todos os campos");
             }
-            if (turma.getDisciplina() == null) {
-                throw new DisciplinaNaoAtribuidaException("Disciplina não atribuída");
+            if (turma.getDisciplinaAssociada() == null || !itens.containsKey(turma.getDisciplinaAssociada().getCodigo())) {
+                throw new DisciplinaNaoAtribuidaException("Disciplina não atribuída ou não encontrada");
             }
-            if (turma.getProfessor() == null) {
-                throw new ProfessorNaoAtribuidoException("Professor não atribuído");
+            if (turma.getProfessor() == null || !itens.containsKey(turma.getProfessor().getMatriculaFUB())) {
+                throw new ProfessorNaoAtribuidoException("Professor não atribuído ou não encontrado");
             }
         }
 

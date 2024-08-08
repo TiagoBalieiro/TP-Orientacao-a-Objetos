@@ -1,4 +1,4 @@
-// view/Menu.java
+// src/view/Menu.java
 package view;
 
 import javax.swing.JOptionPane;
@@ -19,6 +19,7 @@ public class Menu<T extends ItensCadastrados> {
                 + "2 - Pesquisar\n"
                 + "3 - Atualizar\n"
                 + "4 - Remover\n"
+                + "5 - Listar Chamada\n" // Nova opção para listar chamada
                 + "0 - Voltar para menu anterior";
 
         int opcao = -1;
@@ -67,6 +68,10 @@ public class Menu<T extends ItensCadastrados> {
                     }
                     break;
 
+                case 5:
+                    listarChamada(); // Nova chamada para listar alunos
+                    break;
+
                 default:
                     break;
             }
@@ -84,40 +89,79 @@ public class Menu<T extends ItensCadastrados> {
     }
 
     private T dadosNovoObjeto() {
-        if (cadastro.getClass().equals(Cadastro.class)) {
-            if (cadastro.getTipo().equals(Aluno.class)) {
-                String nome = JOptionPane.showInputDialog("Informe o nome: ");
-                String cpf = JOptionPane.showInputDialog("Informe o CPF: ");
-                String email = JOptionPane.showInputDialog("Informe o email: ");
-                String matricula = JOptionPane.showInputDialog("Informe a matricula: ");
-                String curso = JOptionPane.showInputDialog("Informe o curso: ");
-                return (T) new Aluno(nome, cpf, email, matricula, curso);
-            } else if (cadastro.getTipo().equals(Professor.class)) {
-                String nome = JOptionPane.showInputDialog("Informe o nome: ");
-                String cpf = JOptionPane.showInputDialog("Informe o CPF: ");
-                String email = JOptionPane.showInputDialog("Informe o email: ");
-                String areaFormacao = JOptionPane.showInputDialog("Informe a area de formacao: ");
-                String matriculaFUB = JOptionPane.showInputDialog("Informe a matricula FUB: ");
-                String departamento = JOptionPane.showInputDialog("Informe o departamento: ");
-                return (T) new Professor(nome, cpf, email, areaFormacao, matriculaFUB, departamento);
-            } else if (cadastro.getTipo().equals(Disciplina.class)) {
-                String nome = JOptionPane.showInputDialog("Informe o nome: ");
-                String codigo = JOptionPane.showInputDialog("Informe o codigo: ");
-                String horario = JOptionPane.showInputDialog("Informe o horario: ");
-                int qtdVagas = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de vagas: "));
-                return (T) new Disciplina(nome, codigo, horario, qtdVagas);
-            } else if (cadastro.getTipo().equals(Turma.class)) {
-                String nome = JOptionPane.showInputDialog("Informe o nome: ");
-                String codigo = JOptionPane.showInputDialog("Informe o codigo: ");
-                String alunos = JOptionPane.showInputDialog("Informe os alunos: ");
-                String numero = JOptionPane.showInputDialog("Informe o numero: ");
-                String horario = JOptionPane.showInputDialog("Informe o horario: ");
-                String qtdVagas = JOptionPane.showInputDialog("Informe a quantidade de vagas: ");
-                Disciplina disciplina = (Disciplina) cadastro.pesquisar(JOptionPane.showInputDialog("Informe o codigo da disciplina: "));
-                Professor professor = (Professor) cadastro.pesquisar(JOptionPane.showInputDialog("Informe a matricula FUB do professor: "));
-                return (T) new Turma(nome, codigo, horario, qtdVagas, alunos, numero, disciplina, professor);
+        if (cadastro.getTipo().equals(Aluno.class)) {
+            String nome = JOptionPane.showInputDialog("Informe o nome: ");
+            String cpf = JOptionPane.showInputDialog("Informe o CPF: ");
+            String email = JOptionPane.showInputDialog("Informe o email: ");
+            String matricula = JOptionPane.showInputDialog("Informe a matricula: ");
+            String curso = JOptionPane.showInputDialog("Informe o curso: ");
+            return (T) new Aluno(nome, cpf, email, matricula, curso);
+        } else if (cadastro.getTipo().equals(Professor.class)) {
+            String nome = JOptionPane.showInputDialog("Informe o nome: ");
+            String cpf = JOptionPane.showInputDialog("Informe o CPF: ");
+            String email = JOptionPane.showInputDialog("Informe o email: ");
+            String areaFormacao = JOptionPane.showInputDialog("Informe a área de formação: ");
+            String matriculaFUB = JOptionPane.showInputDialog("Informe a matrícula FUB: ");
+            String departamento = JOptionPane.showInputDialog("Informe o departamento: ");
+            return (T) new Professor(nome, cpf, email, areaFormacao, matriculaFUB, departamento);
+        } else if (cadastro.getTipo().equals(Disciplina.class)) {
+            String nome = JOptionPane.showInputDialog("Informe o nome: ");
+            String codigo = JOptionPane.showInputDialog("Informe o código: ");
+            String horario = JOptionPane.showInputDialog("Informe o horário: ");
+            int qtdVagas = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de vagas: "));
+            return (T) new Disciplina(nome, codigo, horario, qtdVagas);
+        } else if (cadastro.getTipo().equals(Turma.class)) {
+            String nome = JOptionPane.showInputDialog("Informe o nome: ");
+            String codigo = JOptionPane.showInputDialog("Informe o código: ");
+            String numero = JOptionPane.showInputDialog("Informe o número: ");
+            String horario = JOptionPane.showInputDialog("Informe o horário: ");
+            String qtdVagas = JOptionPane.showInputDialog("Informe a quantidade de vagas: ");
+            Disciplina disciplina = (Disciplina) cadastro.pesquisar(JOptionPane.showInputDialog("Informe o código da disciplina: "));
+    
+            // Criar a turma inicialmente sem alunos
+            Turma turma = new Turma(nome, codigo, horario, qtdVagas, numero, disciplina, null);
+    
+            // Adicionar alunos à turma
+            String alunosInput = JOptionPane.showInputDialog("Informe as matrículas dos alunos (separados por vírgula): ");
+            String[] matriculasAlunos = alunosInput.split(",\\s*");
+            
+            for (String matricula : matriculasAlunos) {
+                Aluno aluno = (Aluno) cadastro.pesquisar(matricula.trim()); // Pesquisa o aluno usando a matrícula
+                if (aluno != null) {
+                    turma.adicionarAluno(aluno);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Aluno com matrícula " + matricula + " não encontrado.");
+                }
             }
+    
+            // Adicionar o professor à turma
+            Professor professor = (Professor) cadastro.pesquisar(JOptionPane.showInputDialog("Informe a matrícula FUB do professor: "));
+            turma.setProfessor(professor);
+    
+            return (T) turma;
         }
-        return null;
+        return null; // Retorno obrigatório para tipos não tratados
+    }
+
+    private void listarChamada() {
+        if (cadastro.getTipo().equals(Turma.class)) {
+            String codigoTurma = JOptionPane.showInputDialog("Informe o código da turma: ");
+            Turma turma = (Turma) cadastro.pesquisar(codigoTurma);
+    
+            if (turma != null) {
+                StringBuilder listaDisciplinas = new StringBuilder("Disciplinas da turma " + turma.getNumero() + ":\n");
+                Disciplina disciplinaAssociada = turma.getDisciplinaAssociada();
+                if (disciplinaAssociada != null) {
+                    listaDisciplinas.append("Disciplina: ").append(disciplinaAssociada.getNome()).append(" - Código: ").append(disciplinaAssociada.getCodigo()).append("\n");
+                } else {
+                    listaDisciplinas.append("Nenhuma disciplina associada.\n");
+                }
+                JOptionPane.showMessageDialog(null, listaDisciplinas.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Turma não encontrada.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Essa funcionalidade está disponível apenas para turmas.");
+        }
     }
 }
