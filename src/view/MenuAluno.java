@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import cadastros.CadastroAluno;
+import exceptions.CampoEmBrancoException;
 import app.Aluno;
 
 public class MenuAluno {
@@ -46,13 +47,60 @@ public class MenuAluno {
 
     private void cadastrarAluno() {
         Aluno aluno = dadosAluno();
-        cadAluno.adicionarAluno(aluno);
+        boolean erro = false;
+        try {
+            if (aluno.getNome().isEmpty())
+                
+                throw new CampoEmBrancoException("Campo nome em branco");
+        }
+        catch (CampoEmBrancoException e){
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (aluno.getCpf().isEmpty())
+                
+                throw new CampoEmBrancoException("Campo cpf em branco");
+        }
+        catch (CampoEmBrancoException e){
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            
+        }
+        try {
+            if (aluno.getEmail().isEmpty())
+                
+                throw new CampoEmBrancoException("Campo email em branco");
+        }
+        catch (CampoEmBrancoException e){
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (aluno.getMatricula().isEmpty())
+            throw new CampoEmBrancoException("Campo matricula em branco");
+        }
+        catch (CampoEmBrancoException e){
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (aluno.getCurso().isEmpty())
+            throw new CampoEmBrancoException("Campo curso em branco");
+        }
+        catch (CampoEmBrancoException e){
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        if (!erro){
+            cadAluno.adicionarAluno(aluno);
+        }
     }
-
+    
     private void pesquisarAluno() {
         String matricula = JOptionPane.showInputDialog("Informe a matrícula: ");
         Aluno aluno = cadAluno.buscarAluno(matricula);
-
+        
         if (aluno != null) {
             JOptionPane.showMessageDialog(null, aluno.toString());
         } else {

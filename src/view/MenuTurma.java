@@ -10,6 +10,7 @@ import cadastros.CadastroAluno;
 import cadastros.CadastroDisciplina;
 import cadastros.CadastroProfessor;
 import cadastros.CadastroTurma;
+import exceptions.DisciplinaNaoAtribuidaException;
 
 public class MenuTurma {
 
@@ -69,9 +70,25 @@ public class MenuTurma {
     // Método existente para cadastrar a turma
     private void cadastrarTurma() {
         Turma turma = dadosTurma();
-        cadTurma.adicionarTurma(turma);
+        boolean erro = false;
+        try {
+            if (turma.getDisciplinaAssociada() == null)
+            throw new DisciplinaNaoAtribuidaException("Disciplina não atribuída");
+        } catch (DisciplinaNaoAtribuidaException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (turma.getProfessor() == null)
+            throw new DisciplinaNaoAtribuidaException("Professor não atribuído");
+        } catch (DisciplinaNaoAtribuidaException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        if(!erro)
+            cadTurma.adicionarTurma(turma);
     }
-
+    
     // Método existente para pesquisar a turma
     private void pesquisarTurma() {
         String codigo = JOptionPane.showInputDialog("Informe o código da turma: ");
@@ -82,7 +99,7 @@ public class MenuTurma {
             JOptionPane.showMessageDialog(null, "Turma não encontrada");
         }
     }
-
+    
     // Método existente para atualizar a turma
     private void atualizarTurma() {
         String codigo = JOptionPane.showInputDialog("Informe o código da turma a ser atualizada: ");
