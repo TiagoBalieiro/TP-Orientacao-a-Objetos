@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 import app.*;
 import cadastros.Cadastro;
 
-public class Menu<T extends ItensCadastrados> {
+public class Menu<T> {
 
     private Cadastro<T> cadastro;
 
@@ -102,19 +102,20 @@ public class Menu<T extends ItensCadastrados> {
         } else if (cadastro.getTipo().equals(Disciplina.class)) {
             String nome = JOptionPane.showInputDialog("Informe o nome: ");
             String codigo = JOptionPane.showInputDialog("Informe o código: ");
-            String horario = JOptionPane.showInputDialog("Informe o horário: ");
-            int qtdVagas = Integer.parseInt(JOptionPane.showInputDialog("Informe a quantidade de vagas: "));
-            return (T) new Disciplina(nome, codigo, horario, qtdVagas);
+            return (T) new Disciplina(nome, codigo);
         } else if (cadastro.getTipo().equals(Turma.class)) {
             String nome = JOptionPane.showInputDialog("Informe o nome: ");
             String codigo = JOptionPane.showInputDialog("Informe o código: ");
             String numero = JOptionPane.showInputDialog("Informe o número: ");
             String horario = JOptionPane.showInputDialog("Informe o horário: ");
             String qtdVagas = JOptionPane.showInputDialog("Informe a quantidade de vagas: ");
-            Disciplina disciplina = (Disciplina) cadastro.pesquisar(JOptionPane.showInputDialog("Informe o código da disciplina: "));
-    
+            Disciplina disciplinaAssociada= (Disciplina) cadastro.pesquisar(JOptionPane.showInputDialog("Informe o código da disciplina: "));
+            Professor professor = (Professor) cadastro.pesquisar(JOptionPane.showInputDialog("Informe a matrícula FUB do professor: "));
+            int contadorAlunos = 0;
+
+
             // Criar a turma inicialmente sem alunos
-            Turma turma = new Turma(nome, codigo, horario, qtdVagas, numero, disciplina, null);
+            Turma turma = new Turma(nome, codigo, horario, Integer.parseInt(qtdVagas), Integer.parseInt(numero), disciplinaAssociada, professor, contadorAlunos);
     
             // Adicionar alunos à turma
             String alunosInput = JOptionPane.showInputDialog("Informe as matrículas dos alunos (separados por vírgula): ");
@@ -130,9 +131,6 @@ public class Menu<T extends ItensCadastrados> {
             }
     
             // Adicionar o professor à turma
-            Professor professor = (Professor) cadastro.pesquisar(JOptionPane.showInputDialog("Informe a matrícula FUB do professor: "));
-            turma.setProfessor(professor);
-    
             return (T) turma;
         }
         return null; // Retorno obrigatório para tipos não tratados

@@ -12,7 +12,7 @@ import exceptions.CampoEmBrancoException;
 import exceptions.DisciplinaNaoAtribuidaException;
 import exceptions.ProfessorNaoAtribuidoException;
 
-public class Cadastro<T extends ItensCadastrados> {
+public class Cadastro<T> {
     private Map<String, T> itens;
     private Class<T> tipo;
 
@@ -38,12 +38,12 @@ public class Cadastro<T extends ItensCadastrados> {
             }
         } else if (item instanceof Disciplina) {
             Disciplina disciplina = (Disciplina) item;
-            if (disciplina.getCodigo().isEmpty() || disciplina.getNome().isEmpty() || disciplina.getHorario().isEmpty() || disciplina.getQtdVagas() == 0) {
+            if (disciplina.getCodigo().isEmpty() || disciplina.getNome().isEmpty()) {
                 throw new CampoEmBrancoException("Preencha todos os campos");
             }
-        } /*else if (item instanceof Turma) {
+        } else if (item instanceof Turma) {
             Turma turma = (Turma) item;
-            if (turma.getCodigo().isEmpty() || turma.getNome().isEmpty() || turma.getHorario().isEmpty() || turma.getQtdVagas() == 0 || turma.getAlunos().isEmpty() || turma.getNumero().isEmpty()) {
+            if (turma.getCodigo().isEmpty() || turma.getNome().isEmpty() || turma.getHorario().isEmpty() || turma.getQtdvagas() == 0 || turma.getAlunos().length == 0 || (Integer) turma.getNumero() == null) {
                 throw new CampoEmBrancoException("Preencha todos os campos");
             }
             if (turma.getDisciplinaAssociada() == null) {
@@ -52,7 +52,7 @@ public class Cadastro<T extends ItensCadastrados> {
             if (turma.getProfessor() == null) {
                 throw new ProfessorNaoAtribuidoException("Professor não atribuído");
             }
-        }*/
+        }
 
         String chave = getChave(item);
         itens.put(chave, item);

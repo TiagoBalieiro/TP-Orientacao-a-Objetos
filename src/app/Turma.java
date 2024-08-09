@@ -5,19 +5,23 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Turma extends Disciplina {
-    private String numero;
+    private int numero;
     private Disciplina disciplinaAssociada;
     private Professor professor;
     private Aluno[] alunos;  // Array de alunos associados à turma
     private int contadorAlunos;  // Mantém o controle de quantos alunos foram adicionados
+    private int qtdVagas;
+    private String horario;
 
-    public Turma(String nome, String codigo, String horario, String qtdVagas, String numero, Disciplina disciplinaAssociada, Professor professor) {
-        super(nome, codigo, horario, Integer.parseInt(qtdVagas));
-        this.alunos = new Aluno[ Integer.parseInt(qtdVagas)];  // Inicializa o array de alunos com a quantidade de vagas disponíveis        this.numero = numero;
+    public Turma(String nome, String codigo, String horario, int qtdVagas, int numero, Disciplina disciplinaAssociada, Professor professor, int contadorAlunos) {
+        super(nome, codigo);
+        this.horario = horario;
+        this.qtdVagas = qtdVagas;
+        this.alunos = new Aluno[qtdVagas];  // Inicializa o array de alunos com a quantidade de vagas disponíveis        this.numero = numero;
         this.contadorAlunos = 0;
         this.disciplinaAssociada = disciplinaAssociada;
         this.professor = professor;
-
+        this.contadorAlunos = contadorAlunos;
     }
 
     public Aluno[] getAlunos() {
@@ -33,11 +37,11 @@ public class Turma extends Disciplina {
         }
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
@@ -57,6 +61,23 @@ public class Turma extends Disciplina {
         this.professor = professor;
     }
 
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
+    public int getQtdvagas() {
+        return qtdVagas;
+    }
+
+    public void setQtdVagas(int qtdVagas) {
+        this.qtdVagas = qtdVagas;
+    }
+
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -64,7 +85,7 @@ public class Turma extends Disciplina {
         sb.append("nome='").append(getNome()).append("',\n");
         sb.append("codigo='").append(getCodigo()).append("',\n");
         sb.append("horario='").append(getHorario()).append("',\n");
-        sb.append("Quantidade de Vagas=").append(getQtdVagas()).append(",\n");
+        sb.append("Quantidade de Vagas=").append(getQtdvagas()).append(",\n");
         sb.append("numero da Turma='").append(numero).append("',\n");
         sb.append("disciplinaAssociada='").append(disciplinaAssociada != null ? disciplinaAssociada.getNome() : "null").append("',\n");
         sb.append("professor='").append(professor != null ? professor.getNome() : "null").append("',\n");

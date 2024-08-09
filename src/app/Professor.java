@@ -1,17 +1,13 @@
 // app/Professor.java
 package app;
 
-public class Professor extends ItensCadastrados {
-	private String cpf;
-	private String email;
+public class Professor extends PessoaFisica {
 	private String areaFormacao;
 	private String matriculaFUB;
 	private String departamento;
 
 	public Professor(String nome, String cpf, String email, String areaFormacao, String matriculaFUB, String departamento) {
-		super(nome);
-		this.cpf = cpf;
-		this.email = email;
+		super(nome, cpf, email);
 		this.areaFormacao = areaFormacao;
 		this.matriculaFUB = matriculaFUB;
 		this.departamento = departamento;
@@ -33,22 +29,6 @@ public class Professor extends ItensCadastrados {
 		this.departamento = departamento;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getAreaFormacao() {
 		return areaFormacao;
 	}
@@ -57,16 +37,12 @@ public class Professor extends ItensCadastrados {
 		this.areaFormacao = areaFormacao;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
 	@Override
 	public String toString() {
 		return "Professor{\n" +
-				"nome='" + nome + '\'' + '\n' +
-				"cpf='" + cpf + '\'' + '\n' +
-				"email='" + email + '\'' + '\n' +
+				"nome='" + getNome() + '\'' + '\n' +
+				"cpf='" + getCpf() + '\'' + '\n' +
+				"email='" + getEmail() + '\'' + '\n' +
 				"Área de formação='" + areaFormacao + '\'' + '\n' +
 				"matriculaFUB='" + matriculaFUB + '\'' + '\n' +
 				"departamento='" + departamento + '\'' + '\n' +
