@@ -2,7 +2,6 @@
 package app;
 
 import java.util.List;
-import java.util.ArrayList;
 
 public class Turma extends Disciplina {
     private int numero;
@@ -19,6 +18,7 @@ public class Turma extends Disciplina {
         this.qtdVagas = qtdVagas;
         this.alunos = new Aluno[qtdVagas];  // Inicializa o array de alunos com a quantidade de vagas disponíveis        this.numero = numero;
         this.contadorAlunos = 0;
+        this.numero = numero;
         this.disciplinaAssociada = disciplinaAssociada;
         this.professor = professor;
         this.contadorAlunos = contadorAlunos;
