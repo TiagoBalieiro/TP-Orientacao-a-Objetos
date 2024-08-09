@@ -1,11 +1,15 @@
 package view;
 
 import javax.swing.JOptionPane;
-import cadastros.CadastroTurma;
-import app.*;
+
+import app.Aluno;
+import app.Disciplina;
+import app.Professor;
+import app.Turma;
 import cadastros.CadastroAluno;
 import cadastros.CadastroDisciplina;
 import cadastros.CadastroProfessor;
+import cadastros.CadastroTurma;
 
 public class MenuTurma {
 
@@ -27,6 +31,7 @@ public class MenuTurma {
                 + "2 - Pesquisar\n"
                 + "3 - Atualizar\n"
                 + "4 - Remover\n"
+                + "5 - Imprimir Lista de Presença\n"
                 + "0 - Voltar para menu anterior";
 
         int opcao = -1;
@@ -38,30 +43,39 @@ public class MenuTurma {
                 case 1:
                     cadastrarTurma();
                     break;
+
                 case 2:
                     pesquisarTurma();
                     break;
+
                 case 3:
                     atualizarTurma();
                     break;
+
                 case 4:
                     removerTurma();
                     break;
+
+                case 5:
+                    imprimirListaPresenca();
+                    break;
+
                 default:
                     break;
             }
         } while (opcao != 0);
     }
 
+    // Método existente para cadastrar a turma
     private void cadastrarTurma() {
         Turma turma = dadosTurma();
         cadTurma.adicionarTurma(turma);
     }
 
+    // Método existente para pesquisar a turma
     private void pesquisarTurma() {
-        String codigo = JOptionPane.showInputDialog("Informe o código: ");
+        String codigo = JOptionPane.showInputDialog("Informe o código da turma: ");
         Turma turma = cadTurma.buscarTurma(codigo);
-
         if (turma != null) {
             JOptionPane.showMessageDialog(null, turma.toString());
         } else {
@@ -69,23 +83,22 @@ public class MenuTurma {
         }
     }
 
+    // Método existente para atualizar a turma
     private void atualizarTurma() {
-        String codigo = JOptionPane.showInputDialog("Informe o código: ");
+        String codigo = JOptionPane.showInputDialog("Informe o código da turma a ser atualizada: ");
         Turma turma = cadTurma.buscarTurma(codigo);
-
         if (turma != null) {
-            // Atualize os dados da turma aqui
-            Turma turmaAtualizada = dadosTurma();
-            cadTurma.atualizarTurma(turmaAtualizada);
+            // Atualize os dados da turma conforme necessário
+            cadTurma.atualizarTurma(turma);
         } else {
             JOptionPane.showMessageDialog(null, "Turma não encontrada");
         }
     }
 
+    // Método existente para remover a turma
     private void removerTurma() {
-        String codigo = JOptionPane.showInputDialog("Informe o código: ");
+        String codigo = JOptionPane.showInputDialog("Informe o código da turma a ser removida: ");
         boolean removido = cadTurma.removerTurma(codigo);
-
         if (removido) {
             JOptionPane.showMessageDialog(null, "Turma removida.");
         } else {
@@ -93,6 +106,29 @@ public class MenuTurma {
         }
     }
 
+    // Novo método para imprimir a lista de presença de uma turma específica
+    private void imprimirListaPresenca() {
+        String codigo = JOptionPane.showInputDialog("Informe o código da turma para imprimir a lista de presença: ");
+        Turma turma = cadTurma.buscarTurma(codigo);
+        if (turma != null) {
+            StringBuilder listaPresenca = new StringBuilder();
+            listaPresenca.append("Lista de Presença\n");
+            listaPresenca.append("Código da Turma: ").append(turma.getCodigo()).append("\n");
+            listaPresenca.append("Nome da Disciplina: ").append(turma.getDisciplinaAssociada().getNome()).append("\n");
+            listaPresenca.append("Nome do Professor: ").append(turma.getProfessor().getNome()).append("\n");
+            listaPresenca.append("Alunos Matriculados:\n");
+
+            for (Aluno aluno : turma.getAlunos()) {
+                listaPresenca.append(aluno.getMatricula()).append(" - ").append(aluno.getNome()).append("\n");
+            }
+
+            JOptionPane.showMessageDialog(null, listaPresenca.toString());
+        } else {
+            JOptionPane.showMessageDialog(null, "Turma não encontrada");
+        }
+    }
+
+    // Método existente para coletar dados da turma
     private Turma dadosTurma() {
         String nome = JOptionPane.showInputDialog("Informe o nome: ");
         String codigo = JOptionPane.showInputDialog("Informe o código: ");
