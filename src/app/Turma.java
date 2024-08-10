@@ -2,6 +2,7 @@
 package app;
 
 import java.util.List;
+import exceptions.NumeroIncorretoAlunosException;
 
 public class Turma extends Disciplina {
     private int numero;
@@ -32,8 +33,6 @@ public class Turma extends Disciplina {
         if (contadorAlunos < alunos.length) {
             alunos[contadorAlunos] = aluno;  // Adiciona o aluno ao próximo espaço disponível no array
             contadorAlunos++;
-        } else {
-            System.out.println("Não é possível adicionar mais alunos. A turma está cheia.");
         }
     }
 
@@ -103,4 +102,8 @@ public class Turma extends Disciplina {
         return sb.toString();
     }
 
+    public void verificarNumeroAlunos() throws NumeroIncorretoAlunosException {
+        if (contadorAlunos != alunos.length)
+            throw new NumeroIncorretoAlunosException("Número de alunos não corresponde à quantidade de vagas");
+    }
 }

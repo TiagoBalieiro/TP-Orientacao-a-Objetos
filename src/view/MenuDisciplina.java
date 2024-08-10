@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import cadastros.CadastroDisciplina;
+import exceptions.DisciplinaNaoAtribuidaException;
 import app.Disciplina;
 
 public class MenuDisciplina {
@@ -46,7 +47,26 @@ public class MenuDisciplina {
 
     private void cadastrarDisciplina() {
         Disciplina disciplina = dadosDisciplina();
+        boolean erro = false;
+        try {
+            if (disciplina.getNome().isEmpty())
+                throw new DisciplinaNaoAtribuidaException("Campo nome em branco");
+        } catch (DisciplinaNaoAtribuidaException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (disciplina.getCodigo().isEmpty())
+                throw new DisciplinaNaoAtribuidaException("Campo código em branco");
+        } catch (Exception e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+        
+        if(!erro)
         cadDisciplina.adicionarDisciplina(disciplina);
+        JOptionPane.showMessageDialog(null, "Disciplina cadastrada com sucesso");
     }
 
     private void pesquisarDisciplina() {
@@ -68,6 +88,7 @@ public class MenuDisciplina {
             // Atualize os dados da disciplina aqui
             Disciplina disciplinaAtualizada = dadosDisciplina();
             cadDisciplina.atualizarDisciplina(disciplinaAtualizada);
+            JOptionPane.showMessageDialog(null, "Disciplina atualizada com sucesso");
         } else {
             JOptionPane.showMessageDialog(null, "Disciplina não encontrada");
         }
@@ -78,7 +99,7 @@ public class MenuDisciplina {
         boolean removido = cadDisciplina.removerDisciplina(codigo);
 
         if (removido) {
-            JOptionPane.showMessageDialog(null, "Disciplina removida.");
+            JOptionPane.showMessageDialog(null, "Disciplina removida");
         } else {
             JOptionPane.showMessageDialog(null, "Disciplina não encontrada");
         }

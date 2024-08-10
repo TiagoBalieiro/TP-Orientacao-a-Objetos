@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import cadastros.CadastroProfessor;
+import exceptions.CampoEmBrancoException;
 import app.Professor;
 
 public class MenuProfessor {
@@ -46,7 +47,52 @@ public class MenuProfessor {
 
     private void cadastrarProfessor() {
         Professor professor = dadosProfessor();
-        cadProfessor.adicionarProfessor(professor);
+        boolean erro = false;
+        try {
+            if (professor.getNome().isEmpty())
+                throw new CampoEmBrancoException("Campo nome em branco");
+        } catch (CampoEmBrancoException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (professor.getCpf().isEmpty())
+                throw new CampoEmBrancoException("Campo cpf em branco");
+        } catch (CampoEmBrancoException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (professor.getEmail().isEmpty())
+                throw new CampoEmBrancoException("Campo email em branco");
+        } catch (CampoEmBrancoException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (professor.getAreaFormacao().isEmpty())
+            throw new CampoEmBrancoException("Campo area de formação em branco");
+        } catch (CampoEmBrancoException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (professor.getMatriculaFUB().isEmpty())
+                throw new CampoEmBrancoException("Campo matricula FUB em branco");
+        } catch (CampoEmBrancoException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (professor.getDepartamento().isEmpty())
+            throw new CampoEmBrancoException("Campo departamento em branco");
+        } catch (CampoEmBrancoException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        if(!erro)
+            cadProfessor.adicionarProfessor(professor);
+            JOptionPane.showMessageDialog(null, "Professor cadastrado com sucesso");
     }
 
     private void pesquisarProfessor() {
@@ -68,6 +114,7 @@ public class MenuProfessor {
             // Atualize os dados do professor aqui
             Professor professorAtualizado = dadosProfessor();
             cadProfessor.atualizarProfessor(professorAtualizado);
+            JOptionPane.showMessageDialog(null, "Professor atualizado com sucesso");
         } else {
             JOptionPane.showMessageDialog(null, "Professor não encontrado");
         }
@@ -78,7 +125,7 @@ public class MenuProfessor {
         boolean removido = cadProfessor.removerProfessor(matriculaFUB);
 
         if (removido) {
-            JOptionPane.showMessageDialog(null, "Professor removido.");
+            JOptionPane.showMessageDialog(null, "Professor removido");
         } else {
             JOptionPane.showMessageDialog(null, "Professor não encontrado");
         }

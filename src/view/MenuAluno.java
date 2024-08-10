@@ -69,7 +69,6 @@ public class MenuAluno {
         }
         try {
             if (aluno.getEmail().isEmpty())
-                
                 throw new CampoEmBrancoException("Campo email em branco");
         }
         catch (CampoEmBrancoException e){
@@ -94,6 +93,7 @@ public class MenuAluno {
         }
         if (!erro){
             cadAluno.adicionarAluno(aluno);
+            JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso");
         }
     }
     
@@ -116,6 +116,7 @@ public class MenuAluno {
             // Atualize os dados do aluno aqui
             Aluno alunoAtualizado = dadosAluno();
             cadAluno.atualizarAluno(alunoAtualizado);
+            JOptionPane.showMessageDialog(null, "Aluno atualizado com sucesso");
         } else {
             JOptionPane.showMessageDialog(null, "Aluno não encontrado");
         }
@@ -126,7 +127,7 @@ public class MenuAluno {
         boolean removido = cadAluno.removerAluno(matricula);
 
         if (removido) {
-            JOptionPane.showMessageDialog(null, "Aluno removido.");
+            JOptionPane.showMessageDialog(null, "Aluno removido");
         } else {
             JOptionPane.showMessageDialog(null, "Aluno não encontrado");
         }
