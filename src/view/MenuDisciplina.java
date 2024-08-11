@@ -39,7 +39,11 @@ public class MenuDisciplina {
                 case 4:
                     removerDisciplina();
                     break;
+                case 0:
+                    break;
                 default:
+                    JOptionPane.showMessageDialog(null, "Opção inválida");
+                    opcao = -1;
                     break;
             }
         } while (opcao != 0);

@@ -63,8 +63,11 @@ public class MenuTurma {
                 case 5:
                     imprimirListaPresenca();
                     break;
-
+                case 0: 
+                    break;
                 default:
+                    JOptionPane.showMessageDialog(null, "Opção inválida");
+                    opcao = -1;
                     break;
             }
         } while (opcao != 0);
