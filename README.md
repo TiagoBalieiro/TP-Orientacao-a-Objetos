@@ -30,9 +30,14 @@ Trabalho prático da disciplina Orientação a Objetos do curso de Engenharia de
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 
-Java e algum editor de código que compile Java.
+Instalar o executavel do programa: TPOO.jar e abrilo
 
- 
+### Imagens de funcionamento do programa:
+
+| ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura1) | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura2) | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura3) | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura4) |
+|-------------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|
+| Tela inicial ao abrir o programa                                              | Tela específica de cada cadastro                                                  | Tela de preenchimento de dados                                                     | Tela de sucesso ao cadastrar                                   |
+
 ## 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
