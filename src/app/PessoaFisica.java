@@ -10,7 +10,6 @@ public class PessoaFisica {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
-		this.nome = nome;
 	}
 
 
