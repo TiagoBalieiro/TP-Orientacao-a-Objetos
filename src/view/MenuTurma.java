@@ -124,11 +124,16 @@ public class MenuTurma {
             erro = true;
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        
-
-        if(!erro)
-            cadTurma.adicionarTurma(turma);
-            JOptionPane.showMessageDialog(null, "Turma cadastrada com sucesso");
+        if(!erro){
+            try{
+                cadTurma.adicionarTurma(turma);
+                JOptionPane.showMessageDialog(null, "Turma cadastrada com sucesso");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar turma" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar turma", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     // Método existente para pesquisar a turma
@@ -146,14 +151,22 @@ public class MenuTurma {
     private void atualizarTurma() {
         String codigo = JOptionPane.showInputDialog("Informe o código da turma a ser atualizada: ");
         Turma turma = cadTurma.buscarTurma(codigo);
-    
+        
         if (turma != null) {
             // Solicitar novos dados do usuário
+            String novoNome = JOptionPane.showInputDialog("Informe o novo nome (deixe em branco para manter o atual):", String.valueOf(turma.getNome()));
+            String novoCodigo = JOptionPane.showInputDialog("Informe o novo código (deixe em branco para manter o atual):", String.valueOf(turma.getCodigo()));
             String novoNumero = JOptionPane.showInputDialog("Informe o novo número (deixe em branco para manter o atual):", String.valueOf(turma.getNumero()));
             String novoHorario = JOptionPane.showInputDialog("Informe o novo horário (deixe em branco para manter o atual):", turma.getHorario());
             String novaQtdVagas = JOptionPane.showInputDialog("Informe a nova quantidade de vagas (deixe em branco para manter o atual):", String.valueOf(turma.getQtdvagas()));
             String novoCodigoDisciplina = JOptionPane.showInputDialog("Informe o código da nova disciplina (deixe em branco para manter a atual):");
             String novaMatriculaProfessor = JOptionPane.showInputDialog("Informe a matrícula FUB do novo professor (deixe em branco para manter a atual):");                
+            if (novoNome != null && !novoNome.trim().isEmpty()) {
+                turma.setNome(novoNome);
+            }
+            if (novoCodigo != null && !novoCodigo.trim().isEmpty()) {
+                turma.setCodigo(novoCodigo);
+            }  
             if (novoNumero != null && !novoNumero.trim().isEmpty()) {
                 try {
                     turma.setNumero(Integer.parseInt(novoNumero));
@@ -167,7 +180,20 @@ public class MenuTurma {
             }
             if (novaQtdVagas != null && !novaQtdVagas.trim().isEmpty()) {
                 try {
-                    turma.setQtdVagas(Integer.parseInt(novaQtdVagas));
+                    int novaQtdVagasInt = Integer.parseInt(novaQtdVagas);
+                    turma.setQtdVagas(novaQtdVagasInt);
+                    //redimensiona o array de alunos se a qtdvagas mudar 
+                    if (novaQtdVagasInt < turma.getContadorAlunos()) {
+                        //se o novo numero de vagas for menor do que os alunos, precisamos remover alunos que excedem esse numero
+                        Aluno[] novosAlunos = new Aluno[novaQtdVagasInt];
+                        System.arraycopy(turma.getAlunos(), 0, novosAlunos, 0, novaQtdVagasInt);
+                        turma.setAlunos(novosAlunos);
+                    }else{
+                        Aluno[] novosAlunos = new Aluno[novaQtdVagasInt];
+                        System.arraycopy(turma.getAlunos(), 0, novosAlunos, 0, turma.getContadorAlunos());
+                        turma.setAlunos(novosAlunos);
+                    }
+
                 } catch (NumberFormatException e) {
                     JOptionPane.showMessageDialog(null, "Quantidade de vagas inválida. A turma não foi atualizada.", "Erro", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -190,72 +216,104 @@ public class MenuTurma {
                     JOptionPane.showMessageDialog(null, "Professor não encontrado. A turma não foi atualizada.", "Erro", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-            }       
+            } 
+
+            // Remover alunos matriculados
+            while (true) {
+                String matriculaAluno = JOptionPane.showInputDialog("Informe a matrícula do aluno para remover da turma (deixe em branco para continuar):");
+                if (matriculaAluno == null || matriculaAluno.trim().isEmpty()) {
+                    break;
+                }
+
+                boolean removido = turma.removerAluno(matriculaAluno);
+                if (!removido) {
+                    JOptionPane.showMessageDialog(null, "Aluno não encontrado. Matrícula inválida.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+            //adiciona um novo aluno matriculado
+            while (true) {
+                String matriculaAluno = JOptionPane.showInputDialog("Informe a matrícula do aluno para adicionar à turma (deixe em branco para terminar):");
+                if (matriculaAluno == null || matriculaAluno.trim().isEmpty()) {
+                    break;
+                }
+    
+                Aluno aluno = cadAluno.buscarAluno(matriculaAluno);
+                if (aluno != null) {
+                    turma.adicionarAluno(aluno);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Aluno não encontrado. Matrícula inválida.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            }      
+        }else {
+            JOptionPane.showMessageDialog(null, "Turma não encontrada");
         }
-            // Validar e atualizar a turma
-            boolean erro = false;
-
-            try {
-                if (turma.getNome().isEmpty())
-                    throw new CampoEmBrancoException("Campo nome em branco");
-            } catch (CampoEmBrancoException e) {
-                erro = true;
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-            try {
-                if (turma.getCodigo().isEmpty())
-                    throw new CampoEmBrancoException("Campo código em branco");
-            } catch (CampoEmBrancoException e) {
-                erro = true;
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-            try {
-                if (turma.getHorario().isEmpty())
-                    throw new CampoEmBrancoException("Campo horário em branco");
-            } catch (CampoEmBrancoException e) {
-                erro = true;
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-            try {
-                if (turma.getQtdvagas() <= 0)
-                throw new CampoEmBrancoException("Campo quantidade de vagas deve ser maior que zero");
-            } catch (CampoEmBrancoException e) {
-                erro = true;
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-            try {
-                if (turma.getDisciplinaAssociada() == null)
-                throw new DisciplinaNaoAtribuidaException("Disciplina não atribuída");
-            } catch (DisciplinaNaoAtribuidaException e) {
-                erro = true;
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-            try {
-                if (turma.getProfessor() == null)
-                throw new DisciplinaNaoAtribuidaException("Professor não atribuído");
-            } catch (DisciplinaNaoAtribuidaException e) {
-                erro = true;
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-            try {
-                turma.verificarNumeroAlunos();
-            } catch (NumeroIncorretoAlunosException e) {
-                erro = true;
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-            try {
-                if (turma.getAlunos().length > turma.getQtdvagas())
-                throw new NumeroMaximoAlunosException("Não é possível adicionar mais alunos. A turma está cheia");
-            } catch (NumeroMaximoAlunosException e) {
-                erro = true;
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-
-            if (!erro) {
-                cadTurma.atualizarTurma(turma);
-                JOptionPane.showMessageDialog(null, "Turma atualizada com sucesso");
-        }    
-}
+        // Validar e atualizar a turma
+        boolean erro = false;
+        
+        try {
+            if (turma.getNome().isEmpty())
+            throw new CampoEmBrancoException("Campo nome em branco");
+        } catch (CampoEmBrancoException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (turma.getCodigo().isEmpty())
+            throw new CampoEmBrancoException("Campo código em branco");
+        } catch (CampoEmBrancoException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (turma.getHorario().isEmpty())
+            throw new CampoEmBrancoException("Campo horário em branco");
+        } catch (CampoEmBrancoException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (turma.getQtdvagas() <= 0)
+            throw new CampoEmBrancoException("Campo quantidade de vagas deve ser maior que zero");
+        } catch (CampoEmBrancoException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (turma.getDisciplinaAssociada() == null)
+            throw new DisciplinaNaoAtribuidaException("Disciplina não atribuída");
+        } catch (DisciplinaNaoAtribuidaException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (turma.getProfessor() == null)
+            throw new DisciplinaNaoAtribuidaException("Professor não atribuído");
+        } catch (DisciplinaNaoAtribuidaException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            turma.verificarNumeroAlunos();
+        } catch (NumeroIncorretoAlunosException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            if (turma.getAlunos().length > turma.getQtdvagas())
+            throw new NumeroMaximoAlunosException("Não é possível adicionar mais alunos. A turma está cheia");
+        } catch (NumeroMaximoAlunosException e) {
+            erro = true;
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        if (!erro) {
+            cadTurma.atualizarTurma(turma);
+            JOptionPane.showMessageDialog(null, "Turma atualizada com sucesso");
+        }else{
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar turma");
+        }
+    }
     // Método existente para remover a turma
     private void removerTurma() {
         String codigo = JOptionPane.showInputDialog("Informe o código da turma a ser removida: ");
@@ -293,14 +351,27 @@ public class MenuTurma {
     private Turma dadosTurma() {
         String nome = JOptionPane.showInputDialog("Informe o nome: ");
         String codigo = JOptionPane.showInputDialog("Informe o código: ");
-        String numero = JOptionPane.showInputDialog("Informe o número: ");
+        String numeroStr = JOptionPane.showInputDialog("Informe o número: ");
         String horario = JOptionPane.showInputDialog("Informe o horário: ");
-        String qtdVagas = JOptionPane.showInputDialog("Informe a quantidade de vagas: ");
+        String qtdVagasStr = JOptionPane.showInputDialog("Informe a quantidade de vagas: ");
         Disciplina disciplinaAssociada = cadDisciplina.buscarDisciplina(JOptionPane.showInputDialog("Informe o código da disciplina: "));
         Professor professor = cadProfessor.buscarProfessor(JOptionPane.showInputDialog("Informe a matrícula FUB do professor: "));
         int contadorAlunos = 0;
+        //Verifica e trata da entrada de número e qtdvagas
+        int numero = 0;
+        int qtdVagas =0;
+        try {
+            if(numeroStr != null && !numeroStr.trim().isEmpty()){
+                numero = Integer.parseInt(numeroStr);
+            }
+            if(qtdVagasStr != null && !qtdVagasStr.trim().isEmpty()){
+                qtdVagas = Integer.parseInt(qtdVagasStr);
+            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Número ou quantidade de vagas inválidos. A turma não foi Cadastrada", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
 
-        Turma turma = new Turma(nome, codigo, horario, Integer.parseInt(qtdVagas), Integer.parseInt(numero), disciplinaAssociada, professor, contadorAlunos);
+        Turma turma = new Turma(nome, codigo, horario, qtdVagas, numero, disciplinaAssociada, professor, contadorAlunos);
 
         String alunosInput = JOptionPane.showInputDialog("Informe as matrículas dos alunos (separados por vírgula): ");
         String[] matriculasAlunos = alunosInput.split(",\\s*");

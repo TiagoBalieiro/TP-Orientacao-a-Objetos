@@ -4,6 +4,7 @@ package app;
 public class Professor extends PessoaFisica {
 	private String areaFormacao;
 	private String matriculaFUB;
+	private String matriculaFUBAntiga;
 	private String departamento;
 
 	public Professor(String nome, String cpf, String email, String areaFormacao, String matriculaFUB, String departamento) {
@@ -17,7 +18,14 @@ public class Professor extends PessoaFisica {
 		return matriculaFUB;
 	}
 
+	public String getMatriculaFUBAntiga() {
+		return matriculaFUBAntiga;
+	}
+
 	public void setMatriculaFUB(String matriculaFUB) {
+		if(this.matriculaFUB != null && !this.matriculaFUB.equals(matriculaFUB)){
+			this.matriculaFUBAntiga = this.matriculaFUB;
+		}
 		this.matriculaFUB = matriculaFUB;
 	}
 

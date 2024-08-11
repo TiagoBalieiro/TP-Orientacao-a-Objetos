@@ -90,9 +90,16 @@ public class MenuProfessor {
             erro = true;
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        if(!erro)
-            cadProfessor.adicionarProfessor(professor);
-            JOptionPane.showMessageDialog(null, "Professor cadastrado com sucesso");
+        if(!erro){
+            try{
+                cadProfessor.adicionarProfessor(professor);
+                JOptionPane.showMessageDialog(null, "professor cadastrada com sucesso");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar professor" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar professor", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void pesquisarProfessor() {
@@ -111,9 +118,34 @@ public class MenuProfessor {
         Professor professor = cadProfessor.buscarProfessor(matriculaFUB);
 
         if (professor != null) {
-            // Atualize os dados do professor aqui
-            Professor professorAtualizado = dadosProfessor();
-            cadProfessor.atualizarProfessor(professorAtualizado);
+            String novoNome = JOptionPane.showInputDialog("Informe o novo nome (deixe em branco para manter o atual):", professor.getNome());
+            String novoCpf = JOptionPane.showInputDialog("Informe o novo cpf (deixe em branco para manter o atual):", professor.getCpf());
+            String novoEmail = JOptionPane.showInputDialog("Informe o novo email (deixe em branco para manter o atual):", professor.getEmail());
+            String novaAreaFormacao = JOptionPane.showInputDialog("Informe a nova área de formação (deixe em branco para manter o atual):", professor.getAreaFormacao());
+            String novaMatriculaFUB = JOptionPane.showInputDialog("Informe a nova matrículaFUB (deixe em branco para manter o atual):", professor.getMatriculaFUB());
+            String novoDepartamento = JOptionPane.showInputDialog("Informe o novo departamento (deixe em branco para manter o atual):", professor.getDepartamento());
+
+            //Atualiza o professor com os novos dados
+            if (novoNome != null && !novoNome.trim().isEmpty()){
+                professor.setNome(novoNome);
+            }
+            if (novoCpf != null && !novoCpf.trim().isEmpty()){
+                professor.setCpf(novoCpf);
+            }
+            if (novoEmail != null && !novoEmail.trim().isEmpty()){
+                professor.setEmail(novoEmail);
+            }   
+            if (novaAreaFormacao != null && !novaAreaFormacao.trim().isEmpty()){
+                professor.setAreaFormacao(novaAreaFormacao);
+            }
+            if (novaMatriculaFUB != null && !novaMatriculaFUB.trim().isEmpty()){
+                professor.setMatriculaFUB(novaMatriculaFUB);
+            }
+            if (novoDepartamento != null && !novoDepartamento.trim().isEmpty()){
+                professor.setDepartamento(novoDepartamento);
+            }
+
+            cadProfessor.atualizarProfessor(professor);
             JOptionPane.showMessageDialog(null, "Professor atualizado com sucesso");
         } else {
             JOptionPane.showMessageDialog(null, "Professor não encontrado");

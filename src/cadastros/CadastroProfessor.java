@@ -25,6 +25,10 @@ public class CadastroProfessor {
     }
 
     public void atualizarProfessor(Professor professor) {
+        // remove a entrada antiga se a matricula for alterada
+        if(professor.getMatriculaFUBAntiga() != null && !professor.getMatriculaFUBAntiga().equals(professor.getMatriculaFUB())){
+            professores.remove(professor.getMatriculaFUBAntiga());
+        }
         professores.put(professor.getMatriculaFUB(), professor);
     }
 

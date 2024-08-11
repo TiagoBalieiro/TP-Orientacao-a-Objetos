@@ -25,6 +25,9 @@ public class CadastroAluno {
     }
 
     public void atualizarAluno(Aluno aluno) {
+        if (aluno.getMatriculaAntiga() != null && !aluno.getMatriculaAntiga().equals(aluno.getMatricula())) {
+            alunos.remove(aluno.getMatriculaAntiga());
+        }
         alunos.put(aluno.getMatricula(), aluno);
     }
 }

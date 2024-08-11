@@ -25,13 +25,27 @@ public class PessoaFisica {
 	public String getNome() {
 		return nome;
 	}
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	public String toString() {
 		String resposta = super.toString() + '\n';
 		resposta += "CPF: " + cpf + '\n'; 
 		resposta += "EMAIL: " + email + '\n';
 		return resposta;
 	}
+
+
 }

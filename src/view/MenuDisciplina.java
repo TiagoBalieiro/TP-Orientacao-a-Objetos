@@ -63,10 +63,16 @@ public class MenuDisciplina {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
-        
-        if(!erro)
-        cadDisciplina.adicionarDisciplina(disciplina);
-        JOptionPane.showMessageDialog(null, "Disciplina cadastrada com sucesso");
+        if(!erro){
+            try{
+                cadDisciplina.adicionarDisciplina(disciplina);
+                JOptionPane.showMessageDialog(null, "Disciplina cadastrada com sucesso");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar disciplina" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar disciplina", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void pesquisarDisciplina() {
@@ -85,9 +91,17 @@ public class MenuDisciplina {
         Disciplina disciplina = cadDisciplina.buscarDisciplina(codigo);
 
         if (disciplina != null) {
-            // Atualize os dados da disciplina aqui
-            Disciplina disciplinaAtualizada = dadosDisciplina();
-            cadDisciplina.atualizarDisciplina(disciplinaAtualizada);
+            String novoNome = JOptionPane.showInputDialog("Informe o novo nome (deixe em branco para manter o atual):", disciplina.getNome());
+            String novoCodigo = JOptionPane.showInputDialog("Informe o novo código (deixe em branco para manter o atual):", disciplina.getCodigo());
+            // Atualiza a disciplina atual com novos dados
+            if(novoNome != null && !novoNome.trim().isEmpty()){
+                disciplina.setNome(novoNome);
+            }
+            if(novoCodigo != null && !novoCodigo.trim().isEmpty()){
+                disciplina.setCodigo(novoCodigo);
+            }
+
+            cadDisciplina.atualizarDisciplina(disciplina);
             JOptionPane.showMessageDialog(null, "Disciplina atualizada com sucesso");
         } else {
             JOptionPane.showMessageDialog(null, "Disciplina não encontrada");

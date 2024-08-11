@@ -91,9 +91,15 @@ public class MenuAluno {
             erro = true;
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        if (!erro){
-            cadAluno.adicionarAluno(aluno);
-            JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso");
+        if(!erro){
+            try{
+                cadAluno.adicionarAluno(aluno);
+                JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso");
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Erro ao cadastrar aluno" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar aluno", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
     
@@ -109,19 +115,39 @@ public class MenuAluno {
     }
 
     private void atualizarAluno() {
-        String matricula = JOptionPane.showInputDialog("Informe a matrícula: ");
+        String matricula = JOptionPane.showInputDialog("Informe a matrícula do aluno a ser atualizado: ");
         Aluno aluno = cadAluno.buscarAluno(matricula);
-
+    
         if (aluno != null) {
-            // Atualize os dados do aluno aqui
-            Aluno alunoAtualizado = dadosAluno();
-            cadAluno.atualizarAluno(alunoAtualizado);
+            // Solicitar novos dados do usuário
+            String novoNome = JOptionPane.showInputDialog("Informe o novo nome (deixe em branco para manter o atual):", aluno.getNome());
+            String novoCpf = JOptionPane.showInputDialog("Informe o novo cpf (deixe em branco para manter o atual):", aluno.getCpf());
+            String novoEmail = JOptionPane.showInputDialog("Informe o novo email (deixe em branco para manter o atual):", aluno.getEmail());
+            String novaMatricula = JOptionPane.showInputDialog("Informe a nova matrícula (deixe em branco para manter a atual):", aluno.getMatricula());
+            String novoCurso = JOptionPane.showInputDialog("Informe o novo curso (deixe em branco para manter a atual):", aluno.getCurso());
+    
+            // Atualizar o aluno existente com os novos dados
+            if (novoNome != null && !novoNome.trim().isEmpty()) {
+                aluno.setNome(novoNome);
+            }
+            if (novaMatricula != null && !novaMatricula.trim().isEmpty()) {
+                aluno.setMatricula(novaMatricula);
+            }
+            if (novoCpf != null && !novoCpf.trim().isEmpty()){
+                aluno.setCpf(novoCpf);
+            }
+            if (novoEmail != null && !novoEmail.trim().isEmpty()){
+                aluno.setEmail(novoEmail);
+            }
+            if (novoCurso != null && !novoCurso.trim().isEmpty()){
+                aluno.setCurso(novoCurso);
+            }
+            cadAluno.atualizarAluno(aluno);
             JOptionPane.showMessageDialog(null, "Aluno atualizado com sucesso");
         } else {
             JOptionPane.showMessageDialog(null, "Aluno não encontrado");
         }
     }
-
     private void removerAluno() {
         String matricula = JOptionPane.showInputDialog("Informe a matrícula: ");
         boolean removido = cadAluno.removerAluno(matricula);

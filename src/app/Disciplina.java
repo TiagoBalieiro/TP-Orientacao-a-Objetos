@@ -1,7 +1,8 @@
 package app;
 
 public class Disciplina {
-    private String codigo;
+    protected String codigo;
+    private String codigoAntigo;
     private String nome;
 
     public Disciplina(String nome, String codigo) {
@@ -15,6 +16,19 @@ public class Disciplina {
 
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    public void setCodigo(String codigo){
+        if(this.codigo != null && !this.codigo.equals(codigo)){
+            this.codigoAntigo = this.codigo;
+        }
+        this.codigo = codigo;
+    }
+    public String getCodigoAntigo(){
+        return codigoAntigo;
     }
 
     @Override

@@ -25,6 +25,9 @@ public class CadastroDisciplina {
     }
 
     public void atualizarDisciplina(Disciplina disciplina) {
+        if(disciplina.getCodigoAntigo() != null && !disciplina.getCodigoAntigo().equals(disciplina.getCodigo())){
+            disciplinas.remove(disciplina.getCodigoAntigo());
+        }
         disciplinas.put(disciplina.getCodigo(), disciplina);
     }
 
