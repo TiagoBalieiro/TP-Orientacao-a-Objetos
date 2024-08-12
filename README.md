@@ -97,7 +97,7 @@ Foi acordado entre os membros da equipe que a modelagem do projeto seria realiza
 
 ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Trello.png)
 
-Imagem 1: Quadro de Gerenciamento de Projeto no Trello
+Imagem 1: Quadro de Gerenciamento de Projeto no Trello<br>
 Ref.: autoria própria. (Desenvolvido em [Trello](https://trello.com))
 
 ## <img height="40" width="40" src="https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/lucidchart.png" alt="Lucidchart"/> Modelagem
