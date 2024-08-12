@@ -107,7 +107,7 @@ Ref.: autoria própria. (Desenvolvido em [Trello](https://trello.com))
 
 Como foi definido no cenário, foi acordado entre os membros a modelagem do projeto utilizando a Linguagem de Modelagem Unificada (UML) para a minimalização de eventuais erros estruturais, além de guiar nosso desenvolvimento. Somado a isso, vale ressaltar que o artefato Diagrama de Classes UML desenvolvido foi atualizado conforme a necessidade durante o desenvolvimento do projeto. Confira o artefato UML desenvolvido na imagem 2 a seguir.
 
-![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Trello.png)
+![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/TP00.png)
 
 Imagem 2: artefato Diagrama de Classes UML
 Ref.: autoria própria. (Desenvolvido em [Lucidchart](https://www.lucidchart.com))
