@@ -1,15 +1,15 @@
 package app;
 
-public class PessoaFisica extends ItensCadastrados {
+public class PessoaFisica {
 	
 	private String cpf,
-			email;
+			email,
+			nome;
 	
 	public PessoaFisica(String nome, String cpf, String email) {
-		super(nome);
+		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
-		this.nome = nome;
 	}
 
 
@@ -21,10 +21,31 @@ public class PessoaFisica extends ItensCadastrados {
 		return email;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	public String toString() {
 		String resposta = super.toString() + '\n';
+		resposta += "Nome: " + nome + '\n';
 		resposta += "CPF: " + cpf + '\n'; 
 		resposta += "EMAIL: " + email + '\n';
 		return resposta;
 	}
+
+
 }

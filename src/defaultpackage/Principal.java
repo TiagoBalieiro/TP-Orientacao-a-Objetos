@@ -1,50 +1,57 @@
 package defaultpackage;
-import javax.swing.JOptionPane;
 
-import app.Disciplina;
-import app.Professor;
-import app.Aluno;
-import app.Turma;
-import cadastros.Cadastro;
-import view.Menu;
+import javax.swing.JOptionPane;
+import cadastros.CadastroAluno;
+import cadastros.CadastroProfessor;
+import cadastros.CadastroDisciplina;
+import cadastros.CadastroTurma;
+import view.MenuAluno;
+import view.MenuProfessor;
+import view.MenuDisciplina;
+import view.MenuTurma;
 import view.MenuPrincipal;
 
 public class Principal {
-	static Cadastro<Aluno> cadAluno;
-	static Cadastro<Professor> cadProfessor;
-	static Cadastro<Disciplina> cadDisciplina;
-	static Cadastro<Turma> cadTurma;
+    static CadastroAluno cadAluno;
+    static CadastroProfessor cadProfessor;
+    static CadastroDisciplina cadDisciplina;
+    static CadastroTurma cadTurma;
 
-	public static void main(String[] args) {
-		cadAluno = new Cadastro<>(Aluno.class);
-		cadProfessor = new Cadastro<>(Professor.class);
-		cadDisciplina = new Cadastro<>(Disciplina.class);
-		cadTurma = new Cadastro<>(Turma.class);
+    public static void main(String[] args) {
+        cadAluno = new CadastroAluno();
+        cadProfessor = new CadastroProfessor();
+        cadDisciplina = new CadastroDisciplina();
+        cadTurma = new CadastroTurma(cadAluno, cadDisciplina, cadProfessor);
 
-		int opcao = 0;
+        MenuAluno menuAluno = new MenuAluno(cadAluno);
+        MenuProfessor menuProfessor = new MenuProfessor(cadProfessor);
+        MenuDisciplina menuDisciplina = new MenuDisciplina(cadDisciplina);
+        MenuTurma menuTurma = new MenuTurma(cadTurma, cadAluno, cadDisciplina, cadProfessor);
 
-		do {
-			opcao = MenuPrincipal.menuOpcoes();
-			switch (opcao) {
-				case 1:
-					new Menu<>(cadAluno).exibirMenu();
-					break;
-				case 2:
-					new Menu<>(cadProfessor).exibirMenu();
-					break;
-				case 3:
-					new Menu<>(cadDisciplina).exibirMenu();
-					break;
-				case 4:
-					new Menu<>(cadTurma).exibirMenu();
-					break;
-				case 0:
-					break;
-				default:
-					JOptionPane.showMessageDialog(null, "Opção invalida");
-					opcao = -1;
-					break;
-			}
-		} while (opcao != 0);
-	}
+        int opcao = 0;
+
+        do {
+            opcao = MenuPrincipal.menuOpcoes();
+            switch (opcao) {
+                case 1:
+                    menuAluno.exibirMenu();
+                    break;
+                case 2:
+                    menuProfessor.exibirMenu();
+                    break;
+                case 3:
+                    menuDisciplina.exibirMenu();
+                    break;
+                case 4:
+                    menuTurma.exibirMenu();
+                    break;
+                case 0:
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opção inválida");
+                    opcao = -1;
+                    break;
+            }
+        } while (opcao != 0);
+    }
 }

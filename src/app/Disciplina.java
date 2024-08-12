@@ -1,28 +1,34 @@
 package app;
 
-public class Disciplina extends ItensCadastrados {
-    private String codigo;
-    private String horario;
-    private int qtdVagas;
+public class Disciplina {
+    protected String codigo;
+    private String codigoAntigo;
+    private String nome;
 
-    public Disciplina(String nome, String codigo, String horario, int qtdVagas) {
-        super(nome);
+    public Disciplina(String nome, String codigo) {
+        this.nome = nome;
         this.codigo = codigo;
-        this.horario = horario;
-        this.qtdVagas = qtdVagas;
     }
 
     public String getCodigo() {
         return codigo;
     }
+
     public String getNome() {
         return nome;
     }
-    public String getHorario() {
-        return horario;
+
+    public void setNome(String nome){
+        this.nome = nome;
     }
-    public int getQtdVagas() {
-        return qtdVagas;
+    public void setCodigo(String codigo){
+        if(this.codigo != null && !this.codigo.equals(codigo)){
+            this.codigoAntigo = this.codigo;
+        }
+        this.codigo = codigo;
+    }
+    public String getCodigoAntigo(){
+        return codigoAntigo;
     }
 
     @Override
@@ -30,8 +36,6 @@ public class Disciplina extends ItensCadastrados {
         return "Disciplina{" +
                 "nome='" + nome + '\'' + '\n' +
                 ", codigo='" + codigo + '\'' + '\n' +
-                ", horario='" + horario + '\'' + '\n' +
-                ", Quantodade de vagas=" + qtdVagas + '\n' +
                 '}';
     }
 }
