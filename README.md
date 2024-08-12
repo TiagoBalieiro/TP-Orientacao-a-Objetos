@@ -86,9 +86,10 @@ Prof. André Luiz Peron Martins Lanna
 | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura1) | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura2) | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura9.png) | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura8.png) |
 |-------------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|
 | Tela específica de cada cadastro                                              | Tela dos CRUDs                                                  | Tela de preenchimento de dados                                                     | Tela de sucesso ao remover                                  |
-| ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura1) | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura2) | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura9.png) | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura11.png) |
+
+| ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura1) | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura12.png) | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura13.png) | ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Captura11.png) |
 |-------------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|
-| Tela específica de cada cadastro                                              | Tela dos CRUDs                                                  | Tela de preenchimento de dados                                                     | Tela de sucesso ao remover                                  |
+| Tela específica de cada cadastro                                              | Tela dos CRUDs                                                  | Tela de preenchimento de dados                                                     | Tela de sucesso ao imprimir lista de presença                                |
 
 
 ## 🛠 Ferramentas
