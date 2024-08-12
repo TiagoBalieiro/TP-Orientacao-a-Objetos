@@ -84,12 +84,23 @@ Trabalho prático da disciplina Orientação a Objetos do curso de Engenharia de
 |-------------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|
 | Tela específica de cada cadastro                                              | Tela dos CRUDs                                                  | Tela de preenchimento de dados                                                     | Tela de sucesso ao remover                                  |
 
+## 🛠 Ferramentas
 
----
-<h3 align="center">🛠 Linguagem e ferramentas</h3>
+## <img src="https://img.icons8.com/color/48/000000/trello.png" alt="Trello"/> Gerenciamento de projeto
 
-<p align="center">
-  <img src="https://img.icons8.com/color/48/000000/trello.png" alt="Trello"/>
-  <img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo.png" alt="Java"/>
-  <img height="40" width="40" src="https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/lucidchart.png" alt="Lucidchart"/>
-</p>
+Devido à complexidade das regras de negócio, foi acordado entre os membros da equipe que a modelagem do projeto seria realizada utilizando o Trello. Esta ferramenta foi escolhida para minimizar eventuais erros estruturais e para orientar nosso desenvolvimento. Além disso, o quadro do Trello foi atualizado conforme as necessidades do projeto ao longo do seu desenvolvimento. Confira o quadro do Trello desenvolvido na imagem 1 a seguir.
+
+![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Trello.png)
+
+Imagem 1: Quadro de Gerenciamento de Projeto no Trello
+Ref.: autoria própria. (Desenvolvido em [Trello](https://trello.com))
+
+## <img height="40" width="40" src="https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/lucidchart.png" alt="Lucidchart"/> Modelagem
+
+Como foi definido no cenário, foi acordado entre os membros a modelagem do projeto utilizando a Linguagem de Modelagem Unificada (UML) para a minimalização de eventuais erros estruturais, além de guiar nosso desenvolvimento. Somado a isso, vale ressaltar que o artefato Diagrama de Classes UML desenvolvido foi atualizado conforme a necessidade durante o desenvolvimento do projeto. Confira o artefato UML desenvolvido na imagem 2 a seguir.
+
+![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Trello.png)
+
+Imagem 2: artefato Diagrama de Classes UML
+Ref.: autoria própria. (Desenvolvido em [Lucidchart](https://www.lucidchart.com))
+
