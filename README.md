@@ -96,7 +96,7 @@ Prof. André Luiz Peron Martins Lanna
 
 ## <img src="https://img.icons8.com/color/48/000000/trello.png" alt="Trello"/> Gerenciamento de projeto
 
-Devido à complexidade das regras de negócio, foi acordado entre os membros da equipe que a modelagem do projeto seria realizada utilizando o Trello. Esta ferramenta foi escolhida para minimizar eventuais erros estruturais e para orientar nosso desenvolvimento. Além disso, o quadro do Trello foi atualizado conforme as necessidades do projeto ao longo do seu desenvolvimento. Confira o quadro do Trello desenvolvido na imagem 1 a seguir.
+Foi acordado entre os membros da equipe que a modelagem do projeto seria realizada utilizando o Trello. Esta ferramenta foi escolhida para minimizar eventuais erros estruturais e para orientar nosso desenvolvimento. Além disso, o quadro do Trello foi atualizado conforme as necessidades do projeto ao longo do seu desenvolvimento. Confira o quadro do Trello desenvolvido na imagem 1 a seguir.
 
 ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/Trello.png)
 
