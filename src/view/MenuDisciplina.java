@@ -92,7 +92,7 @@ public class MenuDisciplina {
     }
 
     private void atualizarDisciplina() {
-        String codigo = JOptionPane.showInputDialog("Informe o código: ");
+        String codigo = JOptionPane.showInputDialog("Informe o código a ser atualizado: ");
         Disciplina disciplina = cadDisciplina.buscarDisciplina(codigo);
 
         if (disciplina != null) {
@@ -114,7 +114,7 @@ public class MenuDisciplina {
     }
 
     private void removerDisciplina() {
-        String codigo = JOptionPane.showInputDialog("Informe o código: ");
+        String codigo = JOptionPane.showInputDialog("Informe o código da disciplina a ser removida: ");
         boolean removido = cadDisciplina.removerDisciplina(codigo);
 
         if (removido) {

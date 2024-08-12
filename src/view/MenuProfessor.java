@@ -118,7 +118,7 @@ public class MenuProfessor {
     }
 
     private void atualizarProfessor() {
-        String matriculaFUB = JOptionPane.showInputDialog("Informe a matrícula FUB: ");
+        String matriculaFUB = JOptionPane.showInputDialog("Informe a matrícula FUB a ser atualizada: ");
         Professor professor = cadProfessor.buscarProfessor(matriculaFUB);
 
         if (professor != null) {
@@ -157,7 +157,7 @@ public class MenuProfessor {
     }
 
     private void removerProfessor() {
-        String matriculaFUB = JOptionPane.showInputDialog("Informe a matrícula FUB: ");
+        String matriculaFUB = JOptionPane.showInputDialog("Informe a matrícula FUB a ser removida: ");
         boolean removido = cadProfessor.removerProfessor(matriculaFUB);
 
         if (removido) {

@@ -153,7 +153,7 @@ public class MenuAluno {
         }
     }
     private void removerAluno() {
-        String matricula = JOptionPane.showInputDialog("Informe a matrícula: ");
+        String matricula = JOptionPane.showInputDialog("Informe a matrícula do aluno a ser removido: ");
         boolean removido = cadAluno.removerAluno(matricula);
 
         if (removido) {
