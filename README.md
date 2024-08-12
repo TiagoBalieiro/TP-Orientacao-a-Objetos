@@ -11,6 +11,64 @@ Prof. André Luiz Peron Martins Lanna
 | Euller Júlio da Silva | Kaiky Dourado Mendes de Sousa | Pedro Henrique Martins Silva | Tiago Antunes Balieiro 
 231026714 | 231035277 | 231029270 | 231011838 |
 
+## Resumo do Projeto
+
+### Objetivo
+
+Desenvolver um sistema de cadastro e gerenciamento de alunos, professores, disciplinas e turmas para a Universidade de Brasília (UnB). O sistema é desenvolvido em Java e utiliza a interface gráfica Swing para facilitar a interação com o usuário.
+
+### Funcionalidades Principais
+
+#### Cadastro de Alunos
+- Gerenciamento das informações dos alunos, incluindo matrícula, nome e dados pessoais.
+- Funcionalidades para adicionar, buscar, atualizar e remover alunos.
+
+#### Cadastro de Professores
+- Registro e atualização dos dados dos professores, como matrícula, nome e áreas de atuação.
+- Funcionalidades para adicionar, buscar, atualizar e remover professores.
+
+#### Cadastro de Disciplinas
+- Adição e manutenção das disciplinas oferecidas pela universidade.
+- Armazena informações como código da disciplina e nome.
+- Funcionalidades para adicionar, buscar, atualizar e remover disciplinas.
+
+#### Cadastro de Turmas
+- Associação de alunos e professores às turmas.
+- Definição da capacidade da turma e matrícula de alunos em turmas específicas.
+- Funcionalidades para cadastrar, buscar, atualizar, remover turmas e imprimir lista de presença.
+
+### Exceções
+
+O sistema implementa várias exceções personalizadas para garantir a integridade dos dados e a consistência das operações:
+
+- **CampoEmBrancoException**: Lançada quando um campo obrigatório (nome, código, horário) está vazio durante o cadastro ou atualização.
+- **DisciplinaNaoAtribuidaException**: Lançada quando uma turma não tem uma disciplina ou professor associado.
+- **NumeroIncorretoAlunosException**: Lançada quando o número de alunos matriculados não corresponde ao esperado.
+- **NumeroMaximoAlunosException**: Lançada quando a tentativa de adicionar um aluno excede a capacidade máxima da turma.
+
+### Processos e Interação
+
+- **Cadastro de Turmas**: Permite associar uma turma a uma disciplina e a um professor, além de definir a quantidade de vagas e matricular alunos.
+- **Atualização de Turmas**: Permite alterar informações da turma, como nome, código, horário e quantidade de vagas. O sistema verifica se as alterações são válidas, atualiza a lista de alunos se necessário e garante que a capacidade da turma não seja excedida.
+- **Remoção de Alunos e Turmas**: Permite a remoção de alunos de uma turma e a exclusão de turmas do sistema.
+- **Impressão de Lista de Presença**: Gera uma lista de presença para uma turma específica, exibindo o código da turma, o nome da disciplina, o nome do professor e os alunos matriculados.
+
+### Modelagem e Ferramentas
+
+- **UML (Linguagem de Modelagem Unificada)**: Utilizada para modelar a estrutura e os processos do sistema, garantindo uma organização clara e a integridade do projeto.
+- **Trello**: Utilizado para o gerenciamento de tarefas e acompanhamento do progresso do desenvolvimento.
+- **Lucidchart**: Utilizado para a criação de diagramas e visualização dos processos e fluxos de dados.
+
+### Interface Gráfica
+
+Desenvolvida em Swing, a interface gráfica proporciona uma interação intuitiva com o sistema, permitindo realizar operações através de menus e diálogos.
+
+### Desafios e Soluções
+
+- **Gerenciamento Dinâmico de Vagas**: Aumentar ou diminuir a quantidade de vagas nas turmas exige uma gestão eficiente do array de alunos, garantindo que o sistema não quebre ao adicionar ou remover alunos.
+- **Validação de Dados**: Implementação de verificações rigorosas para garantir que todos os dados estejam corretos e que as operações sejam realizadas de forma consistente.
+
+
 
 ## Features
 
