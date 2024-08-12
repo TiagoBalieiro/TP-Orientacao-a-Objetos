@@ -14,6 +14,7 @@ import exceptions.CampoEmBrancoException;
 import exceptions.DisciplinaNaoAtribuidaException;
 import exceptions.NumeroIncorretoAlunosException;
 import exceptions.NumeroMaximoAlunosException;
+import exceptions.ProfessorNaoAtribuidoException;
 
 public class MenuTurma {
 
@@ -107,8 +108,8 @@ public class MenuTurma {
         }
         try {
             if (turma.getProfessor() == null)
-                throw new DisciplinaNaoAtribuidaException("Professor não atribuído");
-        } catch (DisciplinaNaoAtribuidaException e) {
+                throw new ProfessorNaoAtribuidoException("Professor não atribuído");
+        } catch (ProfessorNaoAtribuidoException e) {
             erro = true;
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
