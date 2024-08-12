@@ -109,6 +109,7 @@ Como foi definido no cenário, foi acordado entre os membros a modelagem do proj
 
 ![](https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/TP00.png)
 
-Imagem 2: artefato Diagrama de Classes UML
+Imagem 2: artefato Diagrama de Classes UML<br>
+[![ABRIR UML](https://img.shields.io/badge/ABRIR_UML-F57F17?style=for-the-badge&logo=lucidchart&logoColor=white)](https://lucid.app/lucidchart/ae1d3b43-800a-448b-a7fc-fb16b956549b/edit?viewport_loc=747%2C69%2C5578%2C2699%2CHWEp-vi-RSFO&invitationId=inv_b0ac075d-a917-4c88-bc21-54b5a816569a)<br>
 Ref.: autoria própria. (Desenvolvido em [Lucidchart](https://www.lucidchart.com))
 
