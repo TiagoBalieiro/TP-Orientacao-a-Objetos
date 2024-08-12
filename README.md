@@ -42,7 +42,7 @@ Trabalho prático da disciplina Orientação a Objetos do curso de Engenharia de
    ```
    java -jar TPOO.jar
    ```
-## ☕ Como executar o projeto (LINUX)
+## ☕ Como executar o projeto (LINUX-DEBIAN)
 1. Certifique-se de ter uma versão atualizada do Java. Você pode instalar o OpenJDK, que é uma versão open-source do JDK. Para instalar a versão mais recente do OpenJDK, você pode usar o seguinte comando no terminal:
    ```
    sudo apt update
