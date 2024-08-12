@@ -92,7 +92,7 @@ Prof. André Luiz Peron Martins Lanna
 | Tela específica de cada cadastro                                              | Tela dos CRUDs                                                  | Tela de preenchimento de dados                                                     | Tela de sucesso ao imprimir lista de presença                                |
 
 
-## 🛠 Ferramentas
+## <p>🛠 Ferramentas</p>
 
 ## <img src="https://img.icons8.com/color/48/000000/trello.png" alt="Trello"/> Gerenciamento de projeto
 
