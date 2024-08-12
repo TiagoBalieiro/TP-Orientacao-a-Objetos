@@ -41,6 +41,7 @@ public class PessoaFisica {
 	
 	public String toString() {
 		String resposta = super.toString() + '\n';
+		resposta += "Nome: " + nome + '\n';
 		resposta += "CPF: " + cpf + '\n'; 
 		resposta += "EMAIL: " + email + '\n';
 		return resposta;

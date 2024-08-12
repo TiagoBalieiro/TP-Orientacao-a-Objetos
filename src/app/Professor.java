@@ -17,7 +17,6 @@ public class Professor extends PessoaFisica {
 	public String getMatriculaFUB() {
 		return matriculaFUB;
 	}
-
 	public String getMatriculaFUBAntiga() {
 		return matriculaFUBAntiga;
 	}
