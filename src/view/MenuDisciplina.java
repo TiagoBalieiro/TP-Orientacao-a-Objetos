@@ -2,6 +2,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import cadastros.CadastroDisciplina;
+import exceptions.CampoEmBrancoException;
 import exceptions.DisciplinaNaoAtribuidaException;
 import app.Disciplina;
 
@@ -54,8 +55,8 @@ public class MenuDisciplina {
         boolean erro = false;
         try {
             if (disciplina.getNome().isEmpty())
-                throw new DisciplinaNaoAtribuidaException("Campo nome em branco");
-        } catch (DisciplinaNaoAtribuidaException e) {
+                throw new CampoEmBrancoException("Campo nome em branco");
+        } catch (CampoEmBrancoException e) {
             erro = true;
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
