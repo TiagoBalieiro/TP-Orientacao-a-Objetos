@@ -1,12 +1,15 @@
-# <p>TP Orientação a Objetos</p>
-Trabalho prático da disciplina Orientação a Objetos do curso de Engenharia de Software, do professor Andre Lanna da Universidade de Brasília.
+# <p>Trabalho-OO-FGA0158</p>
+UnB - Universidade de Brasilia<br>
+FGA - Faculdade do Gama<br>
+OO - Orientação por Objetos<br>
+Prof. André Luiz Peron Martins Lanna
 
 ## :octocat: Integrantes do Projeto
 
 | [![Euller Vasco da Gama](https://avatars.githubusercontent.com/u/125329742?v=4)](https://github.com/Potatoyz908) | [![Kaiky](https://avatars.githubusercontent.com/u/17420604?v=4)](https://github.com/kaikysousa) | [![Pedro](https://avatars.githubusercontent.com/u/142694744?v=4)](https://github.com/314dro) | [![Tiago Antunes](https://avatars.githubusercontent.com/u/143669941?s=400&u=b16d161f8a130c590d63271ea41f4dd02d3c573d&v=4)](https://github.com/TiagoBalieiro) |
 |-------------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|-----------------------------------------------------------|
-| Euller Júlio da Silva | Kaiky | Pedro Henrique Martins Silva | Tiago Antunes
-231026714 | insira sua matricula aqui| 231029270 | insira sua matricula aqui |
+| Euller Júlio da Silva | Kaiky Dourado Mendes de Sousa | Pedro Henrique Martins Silva | Tiago Antunes Balieiro 
+231026714 | 231035277 | 231029270 | 231011838 |
 
 
 ## Features
