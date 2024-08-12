@@ -26,9 +26,6 @@ Prof. André Luiz Peron Martins Lanna
 - Herança
 - Polimorfismo
 
-## :mag: Demonstração da aplicação
-
- taca uns print aqui pra deixar bonito e explica
 ## ☕ Como executar o projeto (WINDOWS)
 1. Certifique-se de ter uma versão do Java atualizada e o OpenJDK. Sugiro que caso tenha instalado a versão Java 1.8, desinstale-a e instale uma nova versão com o JDK para evitar instabilidades.
    Segue o link para instalar a versão mais recente Java/jdk:
@@ -66,7 +63,7 @@ Prof. André Luiz Peron Martins Lanna
    ```
    chmod +x TPOO.jar
    ```
- ## :coffee: Exemplos de execução
+ ## 💻 Exemplos de execução
 
 ### Imagens de funcionamento do programa:
 
