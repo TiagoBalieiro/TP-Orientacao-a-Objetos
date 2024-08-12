@@ -85,10 +85,12 @@ Trabalho prático da disciplina Orientação a Objetos do curso de Engenharia de
 | Tela específica de cada cadastro                                              | Tela dos CRUDs                                                  | Tela de preenchimento de dados                                                     | Tela de sucesso ao remover                                  |
 
 
+---
+<h3 align="center">🛠 Linguagem e ferramentas</h3>
 
-## 🛠 Tecnologias
-
-As seguintes ferramentas foram usadas na construção do projeto:
-
-- JJAAVVAA
-- Bibliotecas da linguagem java, como: HashMap e Map.
+<p align="center">
+  <img src="https://img.icons8.com/color/48/000000/trello.png" alt="Trello"/>
+  <img src="https://img.icons8.com/color/48/000000/java-coffee-cup-logo.png" alt="Java"/>
+  <img height="40" width="40" src="https://github.com/TiagoBalieiro/TP-Orientacao-a-Objetos/blob/main/imgs/lucidchart.png" alt="Lucidchart"/>
+</p>
+---
